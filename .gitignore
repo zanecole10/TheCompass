@@ -5,6 +5,9 @@
 # User configuration
 user-config.json
 
+# API keys - NEVER commit these
+config/api-keys.json
+
 # System files
 .DS_Store
 Thumbs.db
