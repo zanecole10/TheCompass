@@ -1446,10 +1446,10 @@ Say: "🎉 All set! You're ready to launch Mission 2. Let's start scraping leads
 
    **Step A:** Create campaign with embedded 3-step sequence
    - POST /v2/campaigns
-   - Include sequences array with 3 steps:
-     - Step 1 (Day 0): Initial email with 3 subject variants for A/B testing
-     - Step 2 (Day 3): Follow-up if no reply
-     - Step 3 (Day 7): Final follow-up if no reply
+   - Include sequences array with 3 steps (delays are RELATIVE to previous step):
+     - Step 1 (Day 0): Initial email with 3 subject variants (delay: 0)
+     - Step 2 (Day 3): Follow-up if no reply (delay: 3 days after Step 1)
+     - Step 3 (Day 7): Final follow-up (delay: 4 days after Step 2)
    - Returns campaign_id
 
    **Step B:** Upload leads with custom variables

@@ -61,7 +61,7 @@ Examples:
 - Body: {{follow_up_day_3}}
 
 **Email 3 (Final Follow-up) - Day 7:**
-- Send if no reply after 7 days
+- Send 4 days after Email 2 (Day 7 total)
 - Subject: `Last note - {{problemAngle}}`
 - Body: {{follow_up_day_7}}
 
@@ -177,7 +177,7 @@ Block launch if under 21 days. Premium path skips this check (pre-warmed).
         },
         {
           "type": "email",
-          "delay": 7,
+          "delay": 4,
           "variants": [
             {
               "subject": "Last note - {{problemAngle}}",
@@ -497,7 +497,10 @@ Run diagnostics (after 5+ days): "Run diagnostics"
 - **Custom variables** store all email content for dynamic insertion
 - **Timezone format:** `Etc/GMT+12` (IANA format, confirmed working)
 - **A/B testing:** 3 variants in step 1, each gets 33% traffic
-- **Delays:** Day 3 and Day 7 are relative to Email 1 send time
+- **Delays are RELATIVE to previous step** (not cumulative from start):
+  - Email 1: delay: 0 → Day 0
+  - Email 2: delay: 3 → 3 days after Email 1 = Day 3
+  - Email 3: delay: 4 → 4 days after Email 2 = Day 7
 - **Stop on reply:** Automatically stops sequence if lead replies
 - **Campaign IDs:** Store for analytics and status checks
 - **Launch timing:** Campaigns start sending within 1 hour of activation
