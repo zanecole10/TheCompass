@@ -69,7 +69,7 @@ For EACH lead (from Apify data):
 From research (industry-wide, not company-specific):
 - `{{painPhrase}}` - Exact pain from research
 - `{{industryTimeWaste}}` - Industry average time waste
-- `{{problemAngle}}` - Problem being solved
+- `{{problem_angle}}` - Problem being solved
 
 From Instantly (automatically populated):
 - `{{sendingAccountFirstName}}` - First name of sending account (for signature)
@@ -522,7 +522,7 @@ Before outputting ANY email:
 
 Following up on my email from {{dayOfWeek}}.
 
-Still curious if {{companyName}} has found a better way to handle {{problemAngle}} yet?
+Still curious if {{companyName}} has found a better way to handle {{problem_angle}} yet?
 
 Most {{industry}} companies we talk to didn't realize there was a faster way until we showed them.
 
@@ -533,14 +533,14 @@ Worth a quick call this week?
 
 ### Email 3 (Day 7)
 
-**Subject:** `Last note - {{problemAngle}}`
+**Subject:** `Last note - {{problem_angle}}`
 
 ```
 {{firstName}},
 
 Last email, I promise.
 
-If {{companyName}} isn't dealing with {{problemAngle}} anymore, great - you can ignore this.
+If {{companyName}} isn't dealing with {{problem_angle}} anymore, great - you can ignore this.
 
 But if you're still {{painfulTask}}, I built something that might save your team {{industryTimeSavings}}.
 
@@ -552,6 +552,15 @@ Let me know if you want to see it. Otherwise, I'll stop bugging you.
 ## Output Format
 
 Save to: `user-workspace/{niche-slug}-emails.json`
+
+**CRITICAL: Use snake_case for ALL custom variable names. DO NOT use camelCase.**
+
+| Correct (snake_case) | WRONG (camelCase) |
+|---------------------|-------------------|
+| `email_body` | ~~emailBody~~ |
+| `subject_variant_a` | ~~subjectVariantA~~ |
+| `follow_up_day_3` | ~~followUpDay3~~ |
+| `problem_angle` | ~~problemAngle~~ |
 
 ```json
 {
@@ -575,6 +584,9 @@ Save to: `user-workspace/{niche-slug}-emails.json`
       "subject_variant_b": "California Title 19???",
       "subject_variant_c": "John, AES form question",
       "email_body": "[Personalized email using ONLY real data]",
+      "follow_up_day_3": "[Day 3 follow-up email]",
+      "follow_up_day_7": "[Day 7 follow-up email]",
+      "problem_angle": "AES Forms",
       "word_count": 120,
       "framework_check": {
         "subject_line": true,

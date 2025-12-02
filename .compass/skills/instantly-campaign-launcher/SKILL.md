@@ -99,8 +99,36 @@ Examples:
 
 **Email 3 (Final Follow-up) - Day 7:**
 - Send 4 days after Email 2 (Day 7 total)
-- Subject: `Last note - {{problemAngle}}`
+- Subject: `Last note - {{problem_angle}}`
 - Body: {{follow_up_day_7}}
+
+## CRITICAL: Custom Variable Naming Convention
+
+**All custom variables MUST use snake_case (lowercase with underscores).**
+
+| Variable | Format | Example |
+|----------|--------|---------|
+| email_body | snake_case ✅ | `{{email_body}}` |
+| subject_variant_a | snake_case ✅ | `{{subject_variant_a}}` |
+| subject_variant_b | snake_case ✅ | `{{subject_variant_b}}` |
+| subject_variant_c | snake_case ✅ | `{{subject_variant_c}}` |
+| follow_up_day_3 | snake_case ✅ | `{{follow_up_day_3}}` |
+| follow_up_day_7 | snake_case ✅ | `{{follow_up_day_7}}` |
+| problem_angle | snake_case ✅ | `{{problem_angle}}` |
+
+**DO NOT USE camelCase for custom variables:**
+- ❌ `emailBody` - WRONG
+- ❌ `subjectVariantA` - WRONG
+- ❌ `followUpDay3` - WRONG
+- ❌ `problemAngle` - WRONG
+
+**Why this matters:** The campaign template uses `{{email_body}}`. If leads are uploaded with `emailBody`, the variable won't match and emails will show the raw placeholder instead of the content.
+
+**Built-in Instantly variables (use as-is):**
+- `{{firstName}}` - Lead's first name
+- `{{lastName}}` - Lead's last name
+- `{{companyName}}` - Lead's company
+- `{{sendingAccountFirstName}}` - Sender's first name (signature)
 
 ## Inbox Distribution
 
@@ -225,7 +253,7 @@ curl -X POST "https://api.instantly.ai/api/v2/campaigns" \
           "delay": 4,
           "variants": [
             {
-              "subject": "Last note - {{problemAngle}}",
+              "subject": "Last note - {{problem_angle}}",
               "body": "{{follow_up_day_7}}"
             }
           ]
@@ -275,7 +303,7 @@ curl -X POST "https://api.instantly.ai/api/v2/leads/add" \
         "subject_variant_c": "John, quick HVAC question",
         "follow_up_day_3": "John,\n\nFollowing up on my email...",
         "follow_up_day_7": "John,\n\nLast email, I promise...",
-        "problemAngle": "Job Costing"
+        "problem_angle": "Job Costing"
       }
     }
   ],

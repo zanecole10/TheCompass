@@ -152,7 +152,7 @@ class InstantlyClient:
                             "delay": 0,
                             "variants": [
                                 {
-                                    "subject": "Last note - {{problemAngle}}",
+                                    "subject": "Last note - {{problem_angle}}",
                                     "body": "{{follow_up_day_7}}"
                                 }
                             ]
@@ -214,7 +214,7 @@ class InstantlyClient:
         - subject_variant_a, subject_variant_b, subject_variant_c: A/B/C subjects
         - follow_up_day_3: Day 3 follow-up body
         - follow_up_day_7: Day 7 follow-up body
-        - problemAngle: For dynamic subject line in final email
+        - problem_angle: For dynamic subject line in final email
         """
         payload = {
             "campaign_id": campaign_id,
@@ -281,7 +281,7 @@ def format_lead_for_instantly(
     - {{subject_variant_a/b/c}} - A/B/C testing subjects
     - {{follow_up_day_3}} - Day 3 follow-up content
     - {{follow_up_day_7}} - Day 7 follow-up content
-    - {{problemAngle}} - For final email subject
+    - {{problem_angle}} - For final email subject
     """
     return {
         "email": email,
@@ -295,7 +295,7 @@ def format_lead_for_instantly(
             "subject_variant_c": subject_variant_c,
             "follow_up_day_3": follow_up_day_3,
             "follow_up_day_7": follow_up_day_7,
-            "problemAngle": problem_angle
+            "problem_angle": problem_angle
         }
     }
 
@@ -352,7 +352,7 @@ def launch_campaign(
             subject_variant_c=lead["subject_variant_c"],
             follow_up_day_3=lead["follow_up_day_3"],
             follow_up_day_7=lead["follow_up_day_7"],
-            problem_angle=lead.get("problemAngle", problem_angle)
+            problem_angle=lead.get("problem_angle", problem_angle)
         ))
 
     # Add leads in batches of 100 to avoid timeout

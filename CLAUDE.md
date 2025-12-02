@@ -1486,7 +1486,7 @@ Say: "🎉 All set! You're ready to launch Mission 2. Let's start scraping leads
      - subject_variant_a, subject_variant_b, subject_variant_c
      - follow_up_day_3 (Day 3 follow-up body)
      - follow_up_day_7 (Day 7 follow-up body)
-     - problemAngle (for dynamic subject lines)
+     - problem_angle (for dynamic subject lines)
 
    **Step C:** Activate campaign
    - POST /api/v2/campaigns/{campaign_id}/activate
