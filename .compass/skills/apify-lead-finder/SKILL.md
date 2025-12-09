@@ -3,6 +3,39 @@
 ## Purpose
 Scrape Google Maps for companies in specified niche and location using Apify's Google Maps Scraper. For Budget path, Apify returns basic contact data. For Premium path, scraping only (AnyMailFinder handles enrichment).
 
+## How to Use
+
+**Script:** `.compass/scripts/apify_lead_scraper.py`
+
+```python
+from apify_lead_scraper import ApifyClient, scrape_leads, scrape_multiple_niches
+
+# Initialize client with API key
+client = ApifyClient("your_apify_api_key")
+
+# Single niche
+result = scrape_leads(
+    client=client,
+    niche="HVAC inspection companies",
+    location="California",
+    max_places=600
+)
+
+# Multiple niches (Mission 2)
+niches = [
+    {"niche": "HVAC inspection companies", "location": "California", "max_places": 600},
+    {"niche": "Fire inspection companies", "location": "California", "max_places": 600},
+    {"niche": "Property management companies", "location": "California", "max_places": 600}
+]
+results = scrape_multiple_niches(client, niches)
+```
+
+**Output:** Saves to `user-workspace/{niche-slug}-leads.json`
+
+**Cost:** ~$2.40 per niche (600 places × $0.004)
+
+**Time:** ~2-5 minutes per niche
+
 ## Trigger
 - "Find leads for {niche}"
 - "Scrape {niche} companies"
