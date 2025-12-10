@@ -878,7 +878,19 @@ You'll need 3 API keys for both paths:
 
 ## STEP 3: SET UP INFRASTRUCTURE
 
-### 3A: Buy 3 Domains (15 minutes)
+**IF PREMIUM PATH:**
+1. Go to https://zapmail.ai
+2. Purchase Growth Plan ($149 first month, $84 ongoing)
+3. ZapMail provides 12 pre-warmed inboxes (domains included!)
+4. You only need 6 for Mission 2
+5. Connect inboxes to Instantly:
+   - In Instantly: "Inboxes" → "Add Inbox"
+   - Use ZapMail SMTP credentials
+6. Done! Skip to Step 4 (no warmup needed, no domains to buy)
+
+**IF LITE PATH:**
+
+### 3A: Buy 3 Domains (15 minutes) - LITE PATH ONLY
 
 You need 3 cheap domains for sending emails.
 
@@ -894,19 +906,8 @@ You need 3 cheap domains for sending emails.
 - Your business domain
 - Anything with "spam" or "email" in the name
 
-### 3B: Set Up Email Inboxes
+### 3B: Set Up Email Inboxes - LITE PATH ONLY
 
-**IF PREMIUM PATH:**
-1. Go to https://zapmail.ai
-2. Purchase Growth Plan ($149 first month, $84 ongoing)
-3. ZapMail provides 12 pre-warmed inboxes
-4. You only need 6 for Mission 2
-5. Connect inboxes to Instantly:
-   - In Instantly: "Inboxes" → "Add Inbox"
-   - Use ZapMail SMTP credentials
-6. Done! Skip to Step 4 (no warmup needed)
-
-**IF LITE PATH:**
 1. Go to https://workspace.google.com
 2. Set up Google Workspace for each domain
 3. Create 2 inboxes per domain (6 total):
@@ -1208,8 +1209,10 @@ Share your checkpoint at https://www.skool.com/base-camp
   - Apify free credits: -$1
 - Ongoing: $200/month
 
-**One-time:**
+**One-time (LITE PATH ONLY):**
 - Domains: $30-45 (3 domains)
+
+**Note:** Premium path does NOT require buying domains - ZapMail includes domains with their inboxes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -1365,21 +1368,25 @@ Say: "✅ API keys saved! Now let's verify your infrastructure setup."
 
 ### Infrastructure Check
 
-**After API keys are collected, check infrastructure:**
+**After API keys are collected, check infrastructure based on their path:**
 
-**Ask these questions one by one:**
+**IF PREMIUM PATH - Ask these questions:**
+
+1. "Do you have ZapMail set up? (yes/no)"
+   - If no: "Go to https://zapmail.ai and purchase the Growth Plan ($149 first month). They'll provide 12 pre-warmed inboxes with domains included. You only need 6 for Mission 2. Let me know when done."
+
+2. "Are your ZapMail inboxes connected to Instantly? (yes/no)"
+   - If no: "In your Instantly dashboard, go to 'Inboxes' → 'Add Inbox' and connect your ZapMail inboxes using their SMTP credentials. Let me know when done."
+
+**IF LITE PATH - Ask these questions:**
 
 1. "Do you have 3 domains purchased? (yes/no)"
    - If no: "You'll need 3 domains for sending emails. Go to Namecheap or GoDaddy and buy 3 cheap domains ($10-15 each). Something like: yourname-outreach1.com, yourname-outreach2.com, yourname-outreach3.com. Let me know when you're done."
 
 2. "Do you have 6 email inboxes configured (2 per domain)? (yes/no)"
-   - If no and PREMIUM: "No problem - ZapMail will set these up for you. Go to https://zapmail.ai and purchase the Growth Plan ($149 first month). They'll provide 12 pre-warmed inboxes. You only need 6 for Mission 2. Let me know when they're connected to Instantly."
-   - If no and LITE: "You'll need to create 6 Google Workspace accounts (2 per domain). Go to https://workspace.google.com and set up Google Workspace for each domain ($6/inbox/month = $36 total). Let me know when done."
+   - If no: "You'll need to create 6 Google Workspace accounts (2 per domain). Go to https://workspace.google.com and set up Google Workspace for each domain ($6/inbox/month = $36 total). Let me know when done."
 
-3. If PREMIUM: "Are your pre-warmed inboxes connected to Instantly? (yes/no)"
-   - If no: "In your Instantly dashboard, go to 'Inboxes' → 'Add Inbox' and connect your ZapMail inboxes. Let me know when done."
-
-4. If LITE: "Have your inboxes been warming for 21+ days? (yes/no)"
+3. "Have your inboxes been warming for 21+ days? (yes/no)"
    - If no: "You'll need to wait 3 weeks before launching. In Instantly, go to 'Inboxes' → turn on warmup for all 6 inboxes. Set warmup to 10-20 emails/day. Check back in 21 days."
    - If yes: "Perfect! Let's verify via Instantly V2 API..." [Check warmup status using V2 API: https://developer.instantly.ai/api/v2]
 
