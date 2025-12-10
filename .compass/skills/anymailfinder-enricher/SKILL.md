@@ -7,6 +7,44 @@ Find verified decision-maker emails and full names using AnyMailFinder. Used for
 
 **Key Change:** We use the **Decision Maker Search** endpoint to get the actual person's full name, email, and title.
 
+## How to Use
+
+**Script:** `.compass/scripts/anymailfinder_enricher.py`
+
+```python
+from anymailfinder_enricher import AnyMailFinderClient, enrich_leads, enrich_multiple_niches
+
+# Initialize client with API key
+client = AnyMailFinderClient("your_anymailfinder_api_key")
+
+# Single file
+result = enrich_leads(
+    client=client,
+    input_file="user-workspace/hvac-leads.json",
+    output_file="user-workspace/hvac-enriched.json"
+)
+
+# Multiple files (Mission 2)
+input_files = [
+    "user-workspace/hvac-leads.json",
+    "user-workspace/fire-inspection-leads.json",
+    "user-workspace/property-management-leads.json"
+]
+results = enrich_multiple_niches(client, input_files)
+```
+
+**Key Features:**
+- Saves progress after EVERY email found (won't lose work if interrupted)
+- Can resume from where it left off automatically
+- Handles rate limiting (1 request/second)
+- Shows clear progress updates every 10 leads
+
+**Output:** Saves to `{niche}-enriched.json`
+
+**Expected find rate:** 50-60%
+
+**Time:** ~1 second per lead (600 leads = ~10-15 minutes per niche)
+
 ## Trigger
 - After Apify scraping completes
 - "Enrich emails for {niche}"
