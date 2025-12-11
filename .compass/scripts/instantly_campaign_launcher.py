@@ -207,25 +207,44 @@ class InstantlyClient:
         """
         Step 2: Add leads in bulk to a campaign with custom variables.
 
-        Endpoint: POST /api/v2/leads/add
+        Endpoint: POST /api/v2/leads
 
-        Each lead must include custom_variables with:
-        - email_body: The personalized email content
-        - subject_variant_a, subject_variant_b, subject_variant_c: A/B/C subjects
-        - follow_up_day_3: Day 3 follow-up body
-        - follow_up_day_7: Day 7 follow-up body
-        - problem_angle: For dynamic subject line in final email
+        IMPORTANT: V2 API requires 'campaign' field directly in each lead object,
+        NOT 'campaign_id' in the parent payload.
+
+        Each lead must include:
+        - email: Lead's email address (required)
+        - campaign: Campaign ID (required)
+        - first_name, last_name, company_name: Lead info
+        - custom_variables: Dict with email_body, subject variants, follow-ups, etc.
         """
-        payload = {
-            "campaign_id": campaign_id,
-            "leads": leads,
-            "skip_if_in_workspace": skip_if_in_workspace
-        }
+        # V2 API: Each lead needs 'campaign' field directly in the lead object
+        leads_with_campaign = []
+        for lead in leads:
+            lead_copy = lead.copy()
+            lead_copy["campaign"] = campaign_id
+            if skip_if_in_workspace:
+                lead_copy["skip_if_in_workspace"] = True
+            leads_with_campaign.append(lead_copy)
 
-        print(f"Adding {len(leads)} leads to campaign {campaign_id}")
-        result = self._request("POST", "/leads/add", payload)
-        print(f"Leads added: {result.get('added', 0)}, Duplicates: {result.get('duplicates', 0)}")
-        return result
+        print(f"Adding {len(leads_with_campaign)} leads to campaign {campaign_id}")
+
+        # Add leads one at a time or in small batches (V2 API prefers this)
+        added = 0
+        errors = 0
+
+        for lead in leads_with_campaign:
+            try:
+                result = self._request("POST", "/leads", lead)
+                if result.get("id"):
+                    added += 1
+            except Exception as e:
+                errors += 1
+                if errors <= 3:  # Only print first 3 errors
+                    print(f"  Error adding lead {lead.get('email')}: {e}")
+
+        print(f"Leads added: {added}, Errors: {errors}")
+        return {"added": added, "errors": errors}
 
     def move_leads_to_campaign(
         self,
